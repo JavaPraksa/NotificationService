@@ -43,9 +43,10 @@ public class NotificationServiceApplication {
 				"\n" +
 				"After that,we will announce you through email that you succesfully verified your email!";
 
+
 	}
 
-	@GetMapping("/sendEmail")
+	@GetMapping("/verifiedEmail")
 	public String publishMessageToTopic() {
 		PublishRequest publishRequest = new PublishRequest(TOPIC_ARN,
 				buildEmailBody(),"Email registered!");
@@ -58,9 +59,23 @@ public class NotificationServiceApplication {
 	private String buildEmailBody() {
 		return "Hi, \n" +
 				"\n" +
-				"Thank you for registering to our Rent A Car app! \n" +
-				"\n" +
+				 "We are happy you succesfully logged in with your verified email :)" + "\n" +
+				 "Hope you will enjoy!" +"\n" +
 				"Rent A Car app team AMD ";
+	}
+
+	@GetMapping("/notificationRentedCar/{id}/{model}")
+	public String sentMessageForRentedCar(@PathVariable Long id,@PathVariable String model) {
+		String EmailBody = "Hi!" + "\n" +
+							"Thank you for renting car:" + model + " with id: " + id + ". \n"
+							+ "Rent A Car app team AMD ";
+
+		PublishRequest publishRequest = new PublishRequest(TOPIC_ARN,
+				EmailBody,"Car rented!");
+
+		snsClient.publish(publishRequest);
+
+		return "Car with id: " + id + " ,model: " + model  + " succesfully rented!";
 	}
 
 	public static void main(String[] args) {
