@@ -7,14 +7,15 @@ import levi9.NotificationService.api.NotificationServiceApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
-@EnableEurekaClient
-@EnableFeignClients(clients= NotificationServiceApi.class)
 @RestController
+@RequestMapping(value = "/notification", produces = MediaType.APPLICATION_JSON_VALUE)
 public class NotificationServiceController {
     @Autowired
     private AmazonSNSClient snsClient;
