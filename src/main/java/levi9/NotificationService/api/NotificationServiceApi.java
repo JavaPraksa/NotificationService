@@ -8,7 +8,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient(name="notification-service")
 public interface NotificationServiceApi {
 
-    @GetMapping("/notification/verificationRequest/{email}")
-    String addSubscription(@PathVariable String email);
+    @GetMapping("/notification/snsverificationRequest/{email}")
+     String addSubscription(@PathVariable String email);
+
+    @GetMapping("/notification/snsverifiedEmailLogging")
+    String publishMessageToTopic();
+
+    @GetMapping("/notification/sesEmail/{email}")
+    String sendsesMessage(@PathVariable String email);
 
 }
