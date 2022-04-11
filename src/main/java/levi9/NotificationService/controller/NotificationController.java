@@ -2,14 +2,12 @@ package levi9.NotificationService.controller;
 
 import levi9.NotificationService.service.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping(value = "/notification")
+@RequestMapping(value = "/notification",produces = MediaType.APPLICATION_JSON_VALUE)
 public class NotificationController {
 
 
@@ -36,10 +34,23 @@ public class NotificationController {
         return answer = this.notificationService.publishMessageToTopic();
     }
 
-    @GetMapping("/sesEmail/{email}")
-    public String sendsesMessage(@PathVariable String email){
+    @GetMapping("/sesEmailRegistration/{email}")
+    public String sendsesMessageRegistration(@PathVariable String email){
             String answer;
-            return answer = this.notificationService.sendsesMessage(email);
+            return answer = this.notificationService.sendsesMessageRegistration(email);
+    }
+
+
+    @GetMapping("/sesEmailRenting/{email}/{id}/{model}")
+    public String sendsesMessageRenting(@PathVariable String email, @PathVariable Long id,
+                                        @PathVariable String model) {
+        String answer;
+        return answer = this.notificationService.sendsesMessageRenting(email,id,model);
+    }
+
+    @GetMapping("/v1")
+    public String example1() {
+        return "Caooo";
     }
 
 

@@ -8,5 +8,8 @@ public interface NotificationService {
 
     String publishMessageToTopic();
 
-    String sendsesMessage( String email);
+    String sendsesMessageRegistration( String email);
+
+    String sendsesMessageRenting(String email,Long id,String model);
+
 }

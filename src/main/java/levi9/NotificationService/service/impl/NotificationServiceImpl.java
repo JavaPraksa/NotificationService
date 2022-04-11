@@ -50,15 +50,37 @@ public class NotificationServiceImpl implements NotificationService {
     }
 
     @Override
-   public String sendsesMessage( String email) {
+   public String sendsesMessageRegistration( String email) {
+        String bodyEmail = "Hi!" + "\n" +
+                "Thank you " + email + " for registration." + "\n"
+                + "Hope you will enjoy!" + "\n" + "\n" +
+                "Rent a car team AMD";
+
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
         simpleMailMessage.setFrom("rentacarapplicationt@gmail.com");
         simpleMailMessage.setTo(email);
-        simpleMailMessage.setSubject("CAO");
-        simpleMailMessage.setText("cao");
-
+        simpleMailMessage.setSubject("Successfull registration!");
+        simpleMailMessage.setText(bodyEmail);
         mailSender.send(simpleMailMessage);
 
-        return "Ses mail successfully sent!";
+        return "Ses mail for registration successfully sent!";
+   }
+
+   @Override
+    public String sendsesMessageRenting(String email,Long id,String model) {
+       String bodyEmail = "Hi!" + "\n" +
+               "Thank you " + email + " for renting car: " + "\n"
+               + model + " with id: "  + id + "\n"
+               + "Hope you will enjoy!" + "\n" + "\n" +
+               "Rent a car team AMD";
+
+       SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+       simpleMailMessage.setFrom("rentacarapplicationt@gmail.com");
+       simpleMailMessage.setTo(email);
+       simpleMailMessage.setSubject("Successfull renting!");
+       simpleMailMessage.setText(bodyEmail);
+       mailSender.send(simpleMailMessage);
+
+       return "Ses mail for renting successfully sent!";
    }
 }
