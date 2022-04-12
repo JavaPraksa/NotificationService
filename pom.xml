@@ -106,18 +106,6 @@
 		</dependency>
 
 
-		<!--<dependency>
-			<groupId>levi9</groupId>
-			<artifactId>NotificationService</artifactId>
-			<version>${notification-service-api.version}</version>
-			<classifier>api</classifier>
-			<exclusions>
-				<exclusion>
-					<groupId>*</groupId>
-					<artifactId>*</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>-->
 
 		<dependency>
 			<groupId>org.projectlombok</groupId>

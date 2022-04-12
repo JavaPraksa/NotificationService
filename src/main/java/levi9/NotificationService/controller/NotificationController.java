@@ -41,17 +41,14 @@ public class NotificationController {
     }
 
 
-    @GetMapping("/sesEmailRenting/{email}/{id}/{model}")
+    @GetMapping("/sesEmailRenting/email/{email}/rent/{id}/model/{model}")
     public String sendsesMessageRenting(@PathVariable String email, @PathVariable Long id,
                                         @PathVariable String model) {
         String answer;
         return answer = this.notificationService.sendsesMessageRenting(email,id,model);
     }
 
-    @GetMapping("/v1")
-    public String example1() {
-        return "Caooo";
-    }
+
 
 
 
